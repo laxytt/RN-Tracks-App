@@ -7,6 +7,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   console.log(errorMessage);
+  console.log(email, password);
 
   return (
     <>
