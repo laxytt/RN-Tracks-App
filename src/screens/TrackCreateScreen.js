@@ -7,6 +7,8 @@ import Map from "../components/Map";
 import { Context as LocationContext } from "../context/LocationContext";
 import useLocation from "../hooks/useLocation";
 import TrackForm from "../components/TrackForm";
+import { FontAwesome } from "@expo/vector-icons";
+import Spacer from "../components/Spacer";
 
 const TrackCreateScreen = ({ isFocused }) => {
   const {
@@ -19,14 +21,15 @@ const TrackCreateScreen = ({ isFocused }) => {
     },
     [recording]
   );
-  const [permissionStatus] = useLocation(
-    isFocused || recording,
-    callback
-  );
+  const [permissionStatus] = useLocation(isFocused || recording, callback);
 
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
-      <Text h3> Create a Track</Text>
+      <Spacer>
+        <Text style={styles.header} h3>
+          Create a Track
+        </Text>
+      </Spacer>
       <Map />
 
       {permissionStatus === "denied" ? (
@@ -37,6 +40,15 @@ const TrackCreateScreen = ({ isFocused }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+TrackCreateScreen.navigationOptions = {
+  title: "Add Track",
+  tabBarIcon: <FontAwesome name="plus" size={20} />
+};
+
+const styles = StyleSheet.create({
+  header: {
+    textAlign: "center"
+  }
+});
 
 export default withNavigationFocus(TrackCreateScreen);
