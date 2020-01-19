@@ -10,7 +10,6 @@ export default (shouldTrack, callback) => {
     const startWatching = async () => {
       const response = await Permissions.askAsync(Permissions.LOCATION);
       setPermissionStatus(response.status);
-
       subscriber = await watchPositionAsync(
         {
           accuracy: Accuracy.BestForNavigation,
